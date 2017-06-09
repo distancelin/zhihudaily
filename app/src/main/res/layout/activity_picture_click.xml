@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.distancelin.zhihudaily.activity.PictureClickActivity">
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_centerVertical="true"
+    android:id="@+id/imageViewDetail"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:id="@+id/downLoad"
+        android:text="下载"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="?attr/selectableItemBackground"
+        />
+</RelativeLayout>

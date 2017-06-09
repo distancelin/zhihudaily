@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:background="@color/colorPrimary">
+<de.hdodenhof.circleimageview.CircleImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="10dp"
+    android:id="@+id/headImage"
+    android:src="@mipmap/ic_launcher_round"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/headImage"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="请登录"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myStar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:textSize="16sp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#ffffff"
+        android:text="我的收藏"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:textColor="#ffffff"
+        android:text="离线下载"/>
+</RelativeLayout>

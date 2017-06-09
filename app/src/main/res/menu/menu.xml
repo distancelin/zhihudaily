@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".News.views.activity.MainActivity">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:checked="true"
+            android:title="首页" />
+        <item
+            android:id="@+id/xinlixue"
+            android:title="日常心理学" />
+        <item
+            android:id="@+id/game"
+            android:title="开始游戏" />
+        <item
+            android:id="@+id/music"
+            android:title="音乐日报" />
+        <item
+            android:id="@+id/cartoon"
+            android:title="动漫日报" />
+        <item
+            android:id="@+id/PE"
+            android:title="体育日报" />
+        <item
+            android:id="@+id/recommend"
+            android:title="日常心理学" />
+        <item
+            android:id="@+id/movie"
+            android:title="电影日报" />
+        <item
+            android:id="@+id/boring"
+            android:title="不许无聊" />
+        <item
+            android:id="@+id/design"
+            android:title="设计日报" />
+        <item
+            android:id="@+id/company"
+            android:title="大公司" />
+        <item
+            android:id="@+id/caijing"
+            android:title="财经日报" />
+        <item
+            android:id="@+id/Internet"
+            android:title="互联网安全" />
+
+
+    </group>
+</menu>
