@@ -7,6 +7,7 @@ import com.distancelin.zhihudaily.callback.DetailNewsFinishCallback;
 import com.distancelin.zhihudaily.newsdetail.model.NewsDetailModel;
 import com.distancelin.zhihudaily.newsdetail.model.NewsDetailModelImpl;
 import com.distancelin.zhihudaily.newsdetail.view.IDetailNewsView;
+import com.distancelin.zhihudaily.utils.NetworkUtil;
 
 /**
  * Created by distancelin on 2017/5/15.
@@ -28,7 +29,12 @@ public class NewsDetailPresenterImpl implements NewsDetailPresenter,DetailNewsFi
 
     @Override
     public void getDetailNews(int newsId) {
-        mModel.getDetailNews(Api.NEWS_Detail_URL,newsId,this);
+        if(NetworkUtil.isNetworkAvaliable()){
+            mModel.getDetailNews(Api.NEWS_Detail_URL,newsId,this);
+        }
+        else {
+            mView.showNetworkError();
+        }
     }
 
     @Override

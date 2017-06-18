@@ -62,6 +62,7 @@ public class HomepageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             case ITEM_NEWS_TITTLE:
                 view = LayoutInflater.from(mContext).inflate(R.layout.news_item_date, parent, false);
                 holder = new TittleHolder(view);
+                Log.i("H", "onCreateViewHolder,tittle");
                 break;
             case ITEM_TYPE_NEWS:
                 view = LayoutInflater.from(mContext).inflate(R.layout.news_item, parent, false);
@@ -162,6 +163,7 @@ public class HomepageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     static class BannerHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.item_banner)
+//        ImageView imageView;
         Banner banner;
 
         public BannerHolder(View itemView) {

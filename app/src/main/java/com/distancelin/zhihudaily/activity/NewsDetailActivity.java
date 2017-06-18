@@ -2,23 +2,21 @@ package com.distancelin.zhihudaily.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewStub;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.file.FileResource;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.distancelin.zhihudaily.R;
@@ -32,7 +30,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +46,8 @@ public class NewsDetailActivity extends AppCompatActivity implements IDetailNews
     ImageView mImageView;
     @BindView(R.id.origin)
     TextView mOrigin;
+    @BindView(R.id.stub_import)
+    ViewStub mViewStub;
     private NewsDetailPresenter mPresenter;
     protected List<String> imgUrlList;
     @Override
@@ -62,18 +61,17 @@ public class NewsDetailActivity extends AppCompatActivity implements IDetailNews
         mPresenter=new NewsDetailPresenterImpl();
         mPresenter.attach(this,newsId);
         WebSettings webSettings = mWebView.getSettings();
-        webSettings.setAllowFileAccess(true);
-        webSettings.setAppCacheEnabled(true);
-        String a=getApplicationContext().getDir("cache", 0).getPath();
-        webSettings.setAppCachePath(getApplicationContext().getDir("cache", 0).getPath());
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setDomStorageEnabled(true);
+//        webSettings.setAllowFileAccess(true);
+//        webSettings.setAppCacheEnabled(true);
+//        webSettings.setAppCachePath(getApplicationContext().getDir("cache", 0).getPath());
+//        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//        webSettings.setLoadWithOverviewMode(true);
+//        webSettings.setDomStorageEnabled(true);
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setDisplayZoomControls(false);
-        webSettings.setLoadsImagesAutomatically(true);
+//        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+//        webSettings.setBuiltInZoomControls(true);
+//        webSettings.setDisplayZoomControls(false);
+//        webSettings.setLoadsImagesAutomatically(true);
         mWebView.addJavascriptInterface(this, "BihuDaily");
     }
 
@@ -85,17 +83,17 @@ public class NewsDetailActivity extends AppCompatActivity implements IDetailNews
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //内部私有文件目录
-        File a= getFilesDir();
-        //内部私有缓存目录
-        File c= getCacheDir();
-
-        //外部私有缓存目录
-        File d= getExternalCacheDir();
-        //外部私有文件目录
-        File b= getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        //外部公有文件目录
-        File h= Environment.getExternalStorageDirectory();
+//        //内部私有文件目录
+//        File a= getFilesDir();
+//        //内部私有缓存目录
+//        File c= getCacheDir();
+//
+//        //外部私有缓存目录
+//        File d= getExternalCacheDir();
+//        //外部私有文件目录
+//        File b= getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//        //外部公有文件目录
+//        File h= Environment.getExternalStorageDirectory();
 //        File i= Environment.getExternalStoragePublicDirectory(null);
 
         return super.onOptionsItemSelected(item);
@@ -109,6 +107,13 @@ public class NewsDetailActivity extends AppCompatActivity implements IDetailNews
         mOrigin.setText(origin);
         mWebView.loadDataWithBaseURL("x-data://base", html, "text/html", "UTF-8", null);
     }
+
+    @Override
+    public void showNetworkError() {
+        mWebView.setVisibility(View.GONE);
+        mViewStub.setVisibility(View.VISIBLE);
+    }
+
     /**
      * 替换html中的<img class="content-image">标签的属性
      *

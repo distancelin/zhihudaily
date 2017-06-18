@@ -3,7 +3,7 @@ package com.distancelin.zhihudaily.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListener {
+abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListener {
 
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {

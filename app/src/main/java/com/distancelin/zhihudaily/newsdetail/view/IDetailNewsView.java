@@ -6,4 +6,5 @@ package com.distancelin.zhihudaily.newsdetail.view;
 
 public interface IDetailNewsView {
     void showDetailNews(String html,String imageUrl,String origin);
+    void showNetworkError();
 }

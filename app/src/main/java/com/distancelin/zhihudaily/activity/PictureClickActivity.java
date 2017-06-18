@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.distancelin.zhihudaily.R;
+import com.distancelin.zhihudaily.adapter.ObserverAdapter;
 import com.distancelin.zhihudaily.retrofit.DownloadImage;
 import com.distancelin.zhihudaily.retrofit.RetrofitManager;
 
@@ -45,11 +46,19 @@ public class PictureClickActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_click);
         ButterKnife.bind(this);
         mUrl=getIntent().getStringExtra("url");
-        mFilename=mUrl.split("-")[1];
+        mFilename=decideFileName(mUrl);
         Glide.with(this).load(mUrl).centerCrop().into(mImageView);
         getSupportActionBar().setTitle("原图查看");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    private String decideFileName(String mUrl) {
+        if (mUrl.contains("-")){
+            return mUrl.split("-")[1];
+        }
+        return mUrl.split("/\\d+/")[1];
+    }
+
     @OnClick(R.id.downLoad)
     public void downloadPicture(){
         DownloadImage downloadImage= RetrofitManager.convert("http://www.baidu.com/", DownloadImage.class,false);
@@ -68,22 +77,7 @@ public class PictureClickActivity extends AppCompatActivity {
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@NonNull String s) {
-
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-
+                .subscribe(new ObserverAdapter<String>(){
                     @Override
                     public void onComplete() {
                         Toast.makeText(PictureClickActivity.this,"图片已下载到"+mFileStoreDir,Toast.LENGTH_SHORT).show();
@@ -113,7 +107,7 @@ public class PictureClickActivity extends AppCompatActivity {
             fos.flush();
             is.close();
             fos.close();
-            MediaStore.Images.Media.insertImage(getContentResolver(),file.getAbsolutePath(),mFilename,null);
+//            MediaStore.Images.Media.insertImage(getContentResolver(),file.getAbsolutePath(),mFilename,null);
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://"+file.getAbsolutePath())));
         } catch (IOException e) {
             e.printStackTrace();
