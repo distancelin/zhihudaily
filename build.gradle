@@ -12,11 +12,6 @@ buildscript {
     }
 }
 
-aaptOptions {
-        cruncherEnabled = false
-        useNewCruncher = false
-}
-
 allprojects {
     repositories {
         jcenter()
